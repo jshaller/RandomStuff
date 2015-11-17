@@ -10,6 +10,7 @@ public class TextCheck {
 	private static final String[] LOW_LET = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 	private static final String[] UP_LET = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
 	private static final String[] MONTH = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
+	//private static final String[] DomainSuffixes = {...};
 	private static final String[][] arrays = {NORM_INTS, MISC_CHAR, LOW_LET, UP_LET, MONTH};
 
 	private static int pMin;
@@ -18,7 +19,8 @@ public class TextCheck {
 		System.out.println(check("101","asdf",1,20));
 		System.out.println(phoneCheck("(916) 817-1234"));
 		System.out.println(dateCheck("1995/12/42"));
-		System.out.println(emailCheck("w@w.com"));                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+		System.out.println(emailCheck("w@w.com"));
+		System.out.println(emailCheck("ww@.com"));            
 	}
 
 	public TextCheck(int n1, int n2){
