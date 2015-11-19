@@ -1,2 +1,2 @@
 # RandomStuff
-String manipulation
+String manipulation / RegEx
