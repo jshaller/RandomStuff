@@ -204,11 +204,8 @@ public class TextCheck {
 	}
 
 	boolean addressCheck(String[] txt){
-
-
-
-
-		return true;
+		
+		return false;
 	}
 
 
