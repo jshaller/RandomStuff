@@ -1,27 +1,22 @@
-package controller;
-
-import java.util.ArrayList;
+package contfcvroller;
 
 public class TextCheck {
 	//WARNING THERE IS A CONSIDERABLE AMOUNT OF OVERLOADING DONE
-	//used for checking inputs for unnecessary things etc
-	private static final String[] NORM_INTS={"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-	private static final String[] MISC_CHAR= {"`", " ", "~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+", ",", "/", "\\", "\"", "'", "[", "{", "}", "]", "|", ";", ";"};	
-	private static final String[] LOW_LET = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
-	private static final String[] UP_LET = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
-	private static final String[] MONTH = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
-	//private static final String[] DomainSuffixes = {...};
-	private static final String[][] arrays = {NORM_INTS, MISC_CHAR, LOW_LET, UP_LET, MONTH};
+	private final String[] NORM_INTS={"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+	private final String[] MISC_CHAR= {"`", " ", "~", "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+", ",", "/", "\\", "\"", "'", "[", "{", "}", "]", "|", ";", ";"};	
+	private final String[] LOW_LET = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+	private final String[] UP_LET = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+	private final String[] MONTH = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
+	private final String[][] arrays = {NORM_INTS, MISC_CHAR, LOW_LET, UP_LET, MONTH};
 
-	private static int pMin;
-	private static int pMax;
-	public static void main(String[] args){
-		System.out.println(check("101","asdf",1,20));
+	private int pMin;
+	private int pMax;
+	/*public static void main(String[] args){
+		System.out.println(check("1100","wingindg",1,20));
 		System.out.println(phoneCheck("(916) 817-1234"));
 		System.out.println(dateCheck("1995/12/42"));
-		System.out.println(emailCheck("w@w.com"));
-		System.out.println(emailCheck("ww@.com"));            
-	}
+		System.out.println(emailCheck("w@w.com"));                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+	}*/
 
 	public TextCheck(int n1, int n2){
 		pMin=n1;
@@ -29,7 +24,7 @@ public class TextCheck {
 	}
 
 	//check the single character against the entire array
-	static boolean letCheck(String types, String b){
+	boolean letCheck(String types, String b){
 		for(int i=0; i<arrays.length&&i<types.length(); i++)
 			if(types.substring(i,i+1).equals("1"))
 				for(int j=0; j< arrays[i].length; j++){
@@ -40,7 +35,7 @@ public class TextCheck {
 		return false;
 	}
 	//checks that the given string only has the specific types
-	static boolean check(String types, String b, int c, int d){
+	boolean check(String types, String b, int c, int d){
 		//length is first priority
 		if(b.length()<c||b.length()>d)
 			return false;
@@ -65,7 +60,7 @@ public class TextCheck {
 	 * @param extras		used to store whatever arrays needed
 	 * @return
 	 */
-	static boolean check(String types, String b, int c, int d, String flag, Object[][] extras){
+	boolean check(String types, String b, int c, int d, String flag, Object[][] extras){
 		//length is first priority
 		if(b.length()<c||b.length()>d)
 			return false;
@@ -102,7 +97,7 @@ public class TextCheck {
 	}
 
 	//checks for multiple things
-	static boolean multCheck(String[] types, Integer[] indexes, String b, int c, int d){
+	boolean multCheck(String[] types, Integer[] indexes, String b, int c, int d){
 		//int i=0;
 		for(int j=0; j<indexes.length; j++){
 			if(j==indexes.length-1){
@@ -119,7 +114,7 @@ public class TextCheck {
 	}
 
 	//now make some specific ones, such as checking for names and stuff to make the code more readable
-	static boolean phoneCheck(String a){
+	boolean phoneCheck(String a){
 		String[] t1 = {"(",")"," ","-"};
 		String[] t2 = {"(",")","-"};
 		Integer[] t3 = {0,4,5,9};
@@ -151,7 +146,7 @@ public class TextCheck {
 	 * @param max		max pass length
 	 * @return
 	 */
-	static boolean passCheck(String pass, String types, Integer[] diffs, int min, int max){
+	boolean passCheck(String pass, String types, Integer[] diffs, int min, int max){
 		//two different letters, two different numbers, two different spec chars
 		for(int i=0;i<types.length(); i++)
 			if(types.substring(i,i+1).equals("1")){
@@ -167,12 +162,12 @@ public class TextCheck {
 		return true;
 	}
 	//just checks for 1 of each type and fits requirements
-	static boolean passCheck(String txt, int min, int max){
+	boolean passCheck(String txt, int min, int max){
 		return check("100", txt, min, max, "c", null)&&check("010",txt,min,32,"c", null)&&check("001",txt,min,32,"c", null)&&check("0001",txt, min, max, "c", null);
 	}
 
 	//just checks for year/month/day in that format
-	static boolean dateCheck(String date){
+	boolean dateCheck(String date){
 		//1996 / 20 / 12
 		//0--- 4 5- 7 8-
 		Integer[] locs = {0,4,5,7,8};
@@ -181,8 +176,18 @@ public class TextCheck {
 		return multCheck(numSeq, locs, date, 10, 10);
 
 	}
+	boolean ssnCheck(String ssn){
+		//333 / 33 / 3333
+		//0-- 3 4- 6 7-
+		Integer[] locs = {0,3,4,6,7};
+		String[] numSeq = {"100","010","100","010","100"};
 
-	static boolean emailCheck(String txt){
+		return multCheck(numSeq, locs, ssn, 10, 10);
+
+	}
+
+
+	boolean emailCheck(String txt){
 		if(txt.length()<7||!txt.contains("@"))
 			return false;
 		if(!(txt.substring(txt.length()-4).equals(".com")||txt.substring(txt.length()-4).equals(".net")))
@@ -190,42 +195,63 @@ public class TextCheck {
 		String a=txt.substring(0,txt.indexOf("@"));
 		boolean b = check("010",a,1,txt.indexOf("@"));
 		if(!check("1011",txt.substring(0,txt.indexOf("@")),1,txt.indexOf("@")))
-				return false;
+			return false;
 		String c = txt.substring(txt.indexOf("@")+1,txt.length()-4);
 		if(!check("1011",txt.substring(txt.indexOf("@")+1,txt.length()-4),1,txt.length()-6))
 			return false;
-		
+
 		return true;
 	}
-	
-	static boolean addressCheck(String[] txt){
-		
-		
-		
-		
+
+	boolean addressCheck(String[] txt){
+
+
+
+
 		return true;
 	}
-	
-	
+
+
 	//returns 1 if true, 0 if false, -1 if incorrect input, -2 if crashed
-	static int typeCheck(String text, String type){
+	public int typeCheck(String type, String text){
 		try{
-			if(text.equals("email")){
+			if(type.equalsIgnoreCase("email")){
 				if(emailCheck(text))
 					return 1;
 				else return 0;
 			}
-			else if(text.equals("pass")){
+			else if(type.equalsIgnoreCase("pass")){
 				if(passCheck(text,pMin,pMax))
 					return 1;
 				else return 0;
 
 			}
-			else if(text.equals("date")){
+			else if(type.equalsIgnoreCase("date")){
 				if(dateCheck(text))
 					return 1;
 				else return 0;
 			}
+			else if(type.equalsIgnoreCase("string")){
+				if(check("1100",text,0,text.length()))
+					return 0;
+				return 1;
+			}
+			else if(type.equalsIgnoreCase("number")){
+				if(check("0111",text,0,text.length()))
+					return 0;
+				return 1;
+			}
+			else if(type.equalsIgnoreCase("username")){
+				if(check("0100",text,0,20))
+					return 0;
+				return 1;
+			}
+			else if(type.equalsIgnoreCase("ssn")){
+				if(ssnCheck(text))
+					return 1;
+				return 0;
+			}
+			
 			return -1;
 		}
 		catch(Exception e){
