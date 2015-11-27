@@ -1,5 +1,3 @@
-package RandomStuff;
-
 public class TextCheck {
 	//WARNING THERE IS A CONSIDERABLE AMOUNT OF OVERLOADING DONE
 	private final String[] NORM_INTS={"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
