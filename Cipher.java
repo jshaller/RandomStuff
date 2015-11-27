@@ -1,5 +1,3 @@
-package RandomStuff;
-
 import java.util.ArrayList;
 
 
