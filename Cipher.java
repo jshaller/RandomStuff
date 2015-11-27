@@ -13,9 +13,8 @@ public class Cipher {
 		
 	}
 
-	String shift(String a, int b){
+	String rotN(String a, int b){
 		ArrayList<Integer> c = help1(a);
-
 		a=a.toLowerCase();
 		if(b>=LOW_LET.length || b<=LOW_LET.length*-1);
 		b=b%LOW_LET.length;
@@ -29,29 +28,50 @@ public class Cipher {
 					a.replaceAll(LOW_LET[i], UP_LET[i+b]);
 			}
 		}
-
+		a=convert(a, c);
 		return a;
 	}
 
 
-	public ArrayList<Integer> help1(String a){
+	
+	/*public ArrayList<Integer> help1(String a){
 		ArrayList<Integer> locs = new ArrayList<Integer>();
 		int count = 0;
 		String temp=a;
 		for(int i=0;i<UP_LET.length;i++)
 			if(temp.indexOf(UP_LET[i])>-1){
+				int num = temp.indexOf(UP_LET[i]);
 				if(locs.size()>0){
-					for(int j=locs.size()-1;j>=0;j--)
-						if(locs.get(j)<=temp.indexOf(UP_LET[i])+count)
+					for(int j=locs.size()-1;j>=0;j--){
+						if(locs.get(j)<= num+count+j)
 							count+=1;
+					}
 				}
-				//System.out.println(count);
 				locs.add(temp.indexOf(UP_LET[i])+count);
+				System.out.print(locs.get(locs.size()-1)+" ");
 				count=0;
 				if(temp.indexOf(UP_LET[i])==temp.length()-1)
 					temp = temp.substring(0,temp.indexOf(UP_LET[i]));
 				else
-					temp = temp.substring(0,temp.indexOf(UP_LET[i]))+temp.substring(temp.indexOf(UP_LET[i]));
+					temp = temp.substring(0,temp.indexOf(UP_LET[i]))+temp.substring(temp.indexOf(UP_LET[i])+1);
+				System.out.println(temp);
+				i--;
+			}
+		return locs;
+
+	}*/
+	
+	public ArrayList<Integer> help1(String a){
+		ArrayList<Integer> locs = new ArrayList<Integer>();
+		String temp=a;
+		for(int i=0;i<UP_LET.length;i++)
+			if(temp.indexOf(UP_LET[i])>-1){
+				locs.add(temp.indexOf(UP_LET[i]));
+				if(temp.indexOf(UP_LET[i])==temp.length()-1)
+					temp = temp.substring(0,temp.indexOf(UP_LET[i]))+"0";
+				else
+					temp = temp.substring(0,temp.indexOf(UP_LET[i]))+"0"+temp.substring(temp.indexOf(UP_LET[i])+1);
+				System.out.println(temp);
 				i--;
 			}
 		return locs;
