@@ -11,19 +11,19 @@ public class Cipher {
 		
 	}
 
-	String rotN(String a, int b){
+	public String rotN(String a, int b){
 		ArrayList<Integer> c = help1(a);
 		a=a.toLowerCase();
-		if(b>=LOW_LET.length || b<=LOW_LET.length*-1);
-		b=b%LOW_LET.length;
+		if(b>=LOW_LET.length || b<=LOW_LET.length*-1)
+			b=b%LOW_LET.length;
 		for(int i=0; i<LOW_LET.length; i++){
 			if(a.contains(LOW_LET[i])){
 				if(i+b<0)
-					a.replaceAll(LOW_LET[i], UP_LET[i+b+a.length()]);
-				else if(i+b>=a.length())
-					a.replaceAll(LOW_LET[i], UP_LET[i+b-a.length()]);
+					a=a.replaceAll(LOW_LET[i], UP_LET[i+b+LOW_LET.length]);
+				else if(i+b>=LOW_LET.length)
+					a=a.replaceAll(LOW_LET[i], UP_LET[i+b+LOW_LET.length]);
 				else
-					a.replaceAll(LOW_LET[i], UP_LET[i+b]);
+					a=a.replaceAll(LOW_LET[i], UP_LET[i+b]);
 			}
 		}
 		a=convert(a, c);
