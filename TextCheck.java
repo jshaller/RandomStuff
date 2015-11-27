@@ -1,4 +1,4 @@
-package contfcvroller;
+package RandomStuff;
 
 public class TextCheck {
 	//WARNING THERE IS A CONSIDERABLE AMOUNT OF OVERLOADING DONE
