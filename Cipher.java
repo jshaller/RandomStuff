@@ -21,7 +21,7 @@ public class Cipher {
 				if(i+b<0)
 					a=a.replaceAll(LOW_LET[i], UP_LET[i+b+LOW_LET.length]);
 				else if(i+b>=LOW_LET.length)
-					a=a.replaceAll(LOW_LET[i], UP_LET[i+b+LOW_LET.length]);
+					a=a.replaceAll(LOW_LET[i], UP_LET[i+b-LOW_LET.length]);
 				else
 					a=a.replaceAll(LOW_LET[i], UP_LET[i+b]);
 			}
