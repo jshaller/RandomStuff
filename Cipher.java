@@ -26,6 +26,7 @@ public class Cipher {
 					a=a.replaceAll(LOW_LET[i], UP_LET[i+b]);
 			}
 		}
+		a=a.toLowerCase();
 		a=convert(a, c);
 		return a;
 	}
