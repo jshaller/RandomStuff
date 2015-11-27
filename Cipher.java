@@ -71,7 +71,6 @@ public class Cipher {
 					temp = temp.substring(0,temp.indexOf(UP_LET[i]))+"0";
 				else
 					temp = temp.substring(0,temp.indexOf(UP_LET[i]))+"0"+temp.substring(temp.indexOf(UP_LET[i])+1);
-				System.out.println(temp);
 				i--;
 			}
 		return locs;
