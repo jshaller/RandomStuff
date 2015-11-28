@@ -1,3 +1,9 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
 public class TextCheck {
 	//WARNING THERE IS A CONSIDERABLE AMOUNT OF OVERLOADING DONE
 	private final String[] NORM_INTS={"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
@@ -5,7 +11,7 @@ public class TextCheck {
 	private final String[] LOW_LET = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 	private final String[] UP_LET = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
 	private final String[] MONTH = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
-	private final String[][] arrays = {NORM_INTS, MISC_CHAR, LOW_LET, UP_LET, MONTH};
+	private ArrayList<String[]> arrays = new ArrayList<String[]>(Arrays.asList(NORM_INTS, MISC_CHAR, LOW_LET, UP_LET, MONTH));
 
 	private int pMin;
 	private int pMax;
@@ -20,13 +26,37 @@ public class TextCheck {
 		pMin=n1;
 		pMax=n2;
 	}
+	public void addArray(){
+		Scanner scan = new Scanner(System.in);
+		System.out.println("Please enter the address of where file is located e.g. C:Users\\Username\\Documents\\magic.text");
+		System.out.println("Alternatively add it to the project and make my life easy");
+		String datapath = scan.nextLine();
+		scan.close();
+		ArrayList<String> add = new ArrayList<String>();
+		try {
+			Scanner scanFile = new Scanner(new File(datapath));
+			while(scanFile.hasNext()){
+				add.add((scanFile.nextLine()));
+			}
+			String[] asdf = new String[add.size()];
+			for(int i=0;i<add.size(); i++){
+				asdf[i]=add.get(i);
+			}
+			
+			scanFile.close();
+			
+		} catch (FileNotFoundException e) {
+			System.out.println("File was not found.");
+			e.printStackTrace();
+		}
+	}
 
 	//check the single character against the entire array
 	boolean letCheck(String types, String b){
-		for(int i=0; i<arrays.length&&i<types.length(); i++)
+		for(int i=0; i<arrays.size()&&i<types.length(); i++)
 			if(types.substring(i,i+1).equals("1"))
-				for(int j=0; j< arrays[i].length; j++){
-					String c =arrays[i][j];
+				for(int j=0; j< arrays.get(i).length; j++){
+					String c =arrays.get(i)[j];
 					if(b.equals(c))
 						return true;
 				}
@@ -68,10 +98,10 @@ public class TextCheck {
 			int counter = 0;
 			if(flag.length()>1)
 				counter = Integer.parseInt(flag.substring(1));
-			for(int i=0;i<arrays.length&&i<types.length(); i++){
+			for(int i=0;i<arrays.size()&&i<types.length(); i++){
 				if(types.substring(i,i+1).equals("1"))
-					for(int j=0; j<arrays[i].length; j++)
-						if(b.contains(arrays[i][j])){
+					for(int j=0; j<arrays.get(i).length; j++)
+						if(b.contains(arrays.get(i)[j])){
 							if(counter==1)
 								return true;
 							else
