@@ -227,19 +227,19 @@ public class TextCheck {
 				else return 0;
 			}
 			else if(type.equalsIgnoreCase("string")){
-				if(check("1100",text,0,text.length()))
-					return 0;
-				return 1;
+				if(check("0011",text,0,text.length()))
+					return 1;
+				return 0;
 			}
 			else if(type.equalsIgnoreCase("number")){
-				if(check("0111",text,0,text.length()))
-					return 0;
-				return 1;
+				if(check("1000",text,0,text.length()))
+					return 1;
+				return 0;
 			}
 			else if(type.equalsIgnoreCase("username")){
-				if(check("0100",text,0,20))
-					return 0;
-				return 1;
+				if(check("1011",text,0,20))
+					return 1;
+				return 0;
 			}
 			else if(type.equalsIgnoreCase("ssn")){
 				if(ssnCheck(text))
