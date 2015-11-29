@@ -11,4 +11,4 @@ Probably going to recode this in C++, then C, then python for the fun of it.
 Any questions just comment or w/e
 
 
-Currently writing psuedocode for seqCheck, and I promise the code will be ugly.  You don't find a sequence by playing pattycakes, now do you?
+Currently writing psuedocode for seqCheck, and I promise the code will be ugly (but highly commented).  You don't find a sequence by playing pattycakes, now do you?
