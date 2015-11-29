@@ -95,20 +95,23 @@ public class TextCheck {
 
 		//flags next priority
 		if(flag.substring(0,1).equals("c")){
-			int counter = 0;
+			int counter = 1;
 			if(flag.length()>1)
 				counter = Integer.parseInt(flag.substring(1));
+			if(counter==0)return true;
 			for(int i=0;i<arrays.size()&&i<types.length(); i++){
 				if(types.substring(i,i+1).equals("1"))
-					for(int j=0; j<arrays.get(i).length; j++)
+					for(int j=0; j<arrays.get(i).length; j++){
 						if(b.contains(arrays.get(i)[j])){
-							if(counter==1)
-								return true;
-							else
-								counter--;
+							counter--;
 						}
+						if(counter==0)
+							return true;
+					}
+				
 			}
 			return false;
+
 		}
 		if(flag.substring(0,1).equals("e")){
 			for(int i=0;i<extras[0].length;i++){
