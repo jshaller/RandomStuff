@@ -9,3 +9,6 @@ Rot-n cipher has already been added ~~but there currently is a problem with stor
 Probably going to recode this in C++, then C, then python for the fun of it.
 
 Any questions just comment or w/e
+
+
+Currently writing psuedocode for seqCheck, and I promise the code will be ugly.  You don't find a sequence by playing pattycakes, now do you?
