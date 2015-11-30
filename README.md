@@ -12,3 +12,5 @@ Any questions just comment or w/e
 
 
 Currently writing psuedocode for seqCheck, and I promise the code will be ugly (but highly commented).  You don't find a sequence by playing pattycakes, now do you?
+
+11/29 psuedocode is done, converting to Java ATM might be held back due to irl commitments eg homework
