@@ -126,6 +126,141 @@ public class TextCheck {
 
 		return false;
 	}
+	
+	
+	/**** u no it's serious when this formatting comes out
+	 * 
+	 * @param types		same as the others
+	 * @param text 			string submitted
+	 * @param st		start char
+	 * @param ed		end char
+	 * @param flag		0 default, otherwise add in things to check.
+	 * 							c__ -- contains the type of character, number appended on means how many
+	 * 							e__ -- contains the specific characters at the specific indexes
+	 * 							s__ -- mod that checks certain sequence of characters (beefed up e)
+	 * 							__h -- text is 0'd out return true
+	 * 
+	 * @param c			lowersize
+	 * @param d			largersize
+	 * @param extras		used to store whatever arrays needed
+	 * @return
+	 */
+	boolean seqCheck(String[] types, String text, String st, String ed, String flag, int c, int d, Object[][] extras){
+		//types of sequences:
+		//1 -> ... + (char) + stream + ...
+		//2 -> ... + stream + (char) + ...
+		//3 -> ... + (char) + stream + (char) + ...
+		//the dots are insignificant
+		//the sequence is effectively "binded" down to min number of types + chars
+		//for the above, stream works in a certain type order, given by the array of types.
+		//extras has a very specific format:
+		//int array for determining if there is a specific char or if there is a sequence
+		//-1 in a slot means it can go as long as it wants, -2 means it must match the char in the string array
+		//string array that matches with int array
+
+		//first check to see if original char is inside string, located at
+		if(st==null&&ed==null)
+			return false;
+		if(st!=null){
+			if (!text.contains(st))
+				return false;
+		}
+		if(ed!=null){
+			if(!text.contains(ed))
+				return false;
+		}
+		if(flag==null){
+			flag="";
+		}
+		//substring text from either st or ed
+		if(st!=null){
+			text=text.substring(text.indexOf(st));
+			if(text.length()==0||(flag.length()>2&&!flag.substring(2,3).equals("h")))
+				return false;
+			else if(text.length()==0&&(flag.length()>2&&flag.substring(2,3).equals("h")))
+				return true;
+		}
+		if(ed!=null){
+			text=text.substring(0,text.indexOf(ed));
+			if(text.length()==0||(flag.length()>2&&!flag.substring(2,3).equals("h")))
+				return false;
+			else if(text.length()==0&&(flag.length()>2&&flag.substring(2,3).equals("h")))
+				return true;
+		}
+		Integer a1[];
+		String a2[];
+		try{
+			a1 = (Integer[])(extras[0]);
+			a2 = (String[])(extras[1]);
+		}
+		catch(Exception e){
+			System.out.println("formatting error");
+			return false;
+		}
+		int counter=0;  //counts for the necessary parts
+		int arplace=0;	//array place holder
+
+		//this loop is ugly, considering fixes later
+		//loop through what is left of text
+		for(int i=0;i<text.length();i++){
+			if(a1[arplace]==-2){
+				if(!text.substring(i,i+1).equals(a2[arplace]))
+					return false;
+				arplace++;
+			}
+
+			else if(a1[arplace]==-1){
+				int num = arplace;
+				while(i<text.length()||num==arplace){
+					if(counter==0){
+						if(!letCheck(a2[arplace],text.substring(i, i+1)))
+							return false;
+						counter++;
+						i++;
+					}
+					else{
+						boolean cont=true;
+						//break out of loop completely
+						if(arplace+1<a1.length){
+							if((a1[arplace+1]).equals(text.substring(i,i+1))){
+								cont=false;
+								arplace++;
+							}
+							else if(letCheck(a2[arplace+1],text.substring(i,i+1))){
+								cont=false;
+								arplace++;
+							}			
+						}
+						if(cont){
+							if(!letCheck(a2[arplace],text.substring(i, i+1)))
+								return false;
+							i++;
+						}
+					}//end of else
+				}//end of while loop
+				//in the case that counter was incremented, it is set to 0
+				counter=0;
+			}
+			//no 0s allowed omigo
+			//check to see if current letter matches with the allowed types
+			else if(a1[arplace]>0){
+				if(!letCheck(a2[arplace],text.substring(i,i+1)))
+					return false;
+				
+				counter++;				
+			}
+			//end check
+			if(counter==a1[arplace]){
+				arplace++;
+				counter=0;
+				if(arplace>a1.length)
+					return true;
+			}
+
+		}
+		return true;
+	}
+	
 
 	//checks for multiple things
 	boolean multCheck(String[] types, Integer[] indexes, String b, int c, int d){
