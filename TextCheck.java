@@ -210,8 +210,8 @@ public class TextCheck {
 			}
 
 			else if(a1[arplace]==-1){
-				int num = arplace;
-				while(i<text.length()||num==arplace){
+				boolean cont = true;
+				while(i<text.length()&&cont){
 					if(counter==0){
 						if(!letCheck(a2[arplace],text.substring(i, i+1)))
 							return false;
@@ -219,7 +219,6 @@ public class TextCheck {
 						i++;
 					}
 					else{
-						boolean cont=true;
 						//break out of loop completely
 						if(arplace+1<a1.length){
 							if((a1[arplace+1]).equals(text.substring(i,i+1))){
