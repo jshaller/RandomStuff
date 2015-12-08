@@ -20,3 +20,5 @@ Currently writing psuedocode for seqCheck, and I promise the code will be ugly (
 ITS 4AM BUT PART1 OF SEQUENCE CHECK IS DONE
 TOTALLY WORTH BRO
 TOTALLY WORTH
+
+12/8/2015 finals week updates are kill
